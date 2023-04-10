@@ -1,4 +1,5 @@
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 const scene = new THREE.Scene()
 
@@ -25,7 +26,7 @@ controls.autoRotate = true
 controls.autoRotateSpeed = 5
 
 const geometry = new THREE.SphereGeometry(1.5, 32, 32)
-const material = new THREE.MeshStandardMaterial({color: 0x00ff00})
+const material = new THREE.MeshStandardMaterial({color: 0x00fff0})
 const sphere = new THREE.Mesh(geometry, material)
 scene.add(sphere)
 
