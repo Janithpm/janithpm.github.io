@@ -3,47 +3,318 @@
 
 <head>
   <meta charset="UTF-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <title>Vite App</title>
-  <script type="module" crossorigin src="/assets/index-30f30988.js"></script>
-  <link rel="stylesheet" href="/assets/index-dd020f32.css">
+  
+  <title>@Janithpm</title>
+  <link rel="stylesheet" href="/assets/index-64b52d39.css">
 </head>
 
 <body>
+
   <nav>
-    <div class="logo">
-      <p>@Janithpm</p>
+    <div class="con">
+      <div class="logo">
+        <a href="">@Janithpm</a>
+      </div>
+      <ul class="links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#technology">Technology</a></li>
+      </ul>
     </div>
-    <ul class="nav-links">
-      <li>
-        <a class="git" href="https://github.com/janithpm">Github</a>
-      </li>
-      <li>
-        <a class="linkedin" href="https://www.linkedin.com/in/janith-pamuditha-madarasinghe-93a64a1b6">LinkedIn</a>
-      </li>
-      <li>
-        <a class="instergram" href="https://www.instagram.com/janithpm/">Instergram</a>
-      </li>
-    </ul>
   </nav>
-  <canvas id="canvas"></canvas>
-  <div class="content">
-    <h3>Under Construction</h3>
-    <p>I am currently in the process of updating and redesigning my website to provide you with a better browsing
-      experience.</p>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"
-    integrity="sha512-He29azWb6CQ0yzDGpF61I/SIWlAclbP/Zh95diyYHwpN0VgkH3rtJKJkcApFJG517GxurJQ2UB676HOhB6pyBQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
-    integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
+
+  <main>
+    <section class="hero" id="hero">
+      <h6 class="text__secondary">Hi, I'm</h6>
+      <h1 class="text__light">Janith Pamuditha</h1>
+      <p class="text__dark">A fresh software engineer specialising in designing and building exceptional digital
+        experiences.</p>
+    </section>
+    <section class="about" id="about">
+      <div class="container">
+        <div class="grid">
+          <div class="left">
+            <img src="assests/images/profile.jpeg" alt="Janith Pamuditha" />
+          </div>
+          <div class="right">
+            <h5 class="text__secondary">About Me</h5>
+            <div class="underline"></div>
+            <h6 class="text__light">
+              Hello there! I'm a fresh software engineer with a strong foundation in computer science and a burning
+              passion
+              for technology who loves building things for the web.<br> I develop exceptional
+              websites and web apps that provide intuitive, pixel-perfect user interfaces with efficient and modern
+              backends.<br> I thrive on solving complex problems and creating innovative solutions through my expertise
+              in
+              web development, mobile development, and machine learning.
+            </h6>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="services" id="services">
+      <div class="container">
+        <!-- <h3 class="text__secondary">My Services</h3> -->
+        <div class="grid">
+          <div class="card">
+            <div class="header">
+              <h5 class="text__secondary">Web Development</h5>
+            </div>
+            <div class="content">
+              <p class="text__dark">
+                I offer comprehensive web development services, leveraging my expertise in front-end and back-end
+                technologies.
+              </p>
+              <ul>
+                <li>User-friendly interfaces to implementing robust functionalities.</li>
+                <li>Responsive and visually appealing websites tailored to your specific needs.</li>
+                <li>Front-end Development (HTML, CSS, JavaScript, React, NexJs)</li>
+                <li>Back-end Development (Node.js, Express, Django)</li>
+                <li>Database Integration (MySQL, MongoDB)</li>
+                <li>Content Management Systems (CMS) Implementation (WordPress, Webflow)</li>
+              </ul>
+              <br>
+              <p class="text__dark"> Whether you require a simple landing page, a dynamic web application, or an
+                e-commerce platform, I
+                ensure
+                that your online presence is engaging, intuitive, and optimized for performance.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h5 class="text__secondary">Mobile App Development:</h5>
+            </div>
+            <div class="content">
+              <p class="text__dark">
+                I specialize in crafting innovative and user-centric mobile applications for Android
+                platform. By focusing on seamless user experiences, intuitive interfaces, and optimal performance, I
+                ensure that your app captivates users and meets their needs.
+              </p>
+              <ul>
+                <li>Native App Development (Android)</li>
+                <li>Cross-Platform Development (React Native, Flutter)</li>
+                <li>User Interface (UI) Design</li>
+                <li>API Integration</li>
+                <li>App Testing and Quality Assurance</li>
+                <li>App Deployment and App Store Optimization</li>
+              </ul>
+              <br>
+              <p class="text__dark">Whether you require a native app or a
+                cross-platform solution, I am equipped to deliver high-quality mobile experiences that drive engagement
+                and customer satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="projects" id="projects">
+      <div class="container">
+        <h5 class="text__secondary">My Projects</h5>
+        <div class="underline"></div>
+        <div class="grid">
+          <div class="card">
+            <div class="img">
+              <img src="assests/projects/govithena/p1.png" alt="">
+            </div>
+            <div class="content">
+              <div class="heading">
+                <h6 class="text__secondary">Govithena</h6>
+                <div class="links">
+                  <a href=""><i class="bi bi-github text__light"></i></a>
+                  <a href=""><i class="bi bi-globe text__light"></i></a>
+                </div>
+              </div>
+              <p class="text__light">Govithena.lk is a web-based platform that connects farmers in Sri Lanka with
+                investors who can provide financial support for crop cultivation, as well as offering technical
+                assistants
+                and consulting services to address knowledge gaps in efficient farming techniques.</p>
+              <div class="tags">
+                <div class="tag">
+                  <p>HTML</p>
+                </div>
+                <div class="tag">
+                  <p>Css</p>
+                </div>
+                <div class="tag">
+                  <p>Js</p>
+                </div>
+                <div class="tag">
+                  <p>php</p>
+                </div>
+                <div class="tag">
+                  <p>MySql</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <video src="assests/projects/wos/cover.mp4" autoplay="true" loop></video>
+            </div>
+            <div class="content">
+              <div class="heading">
+                <h6 class="text__secondary">worldofsentients.com</h6>
+                <div class="links">
+                  <a href=""><i class="bi bi-github text__light"></i></a>
+                  <a href=""><i class="bi bi-globe text__light"></i></a>
+                </div>
+              </div>
+              <p class="text__light">Govithena.lk is a web-based platform that connects farmers in Sri Lanka with
+                investors who can provide financial support for crop cultivation, as well as offering technical
+                assistants
+                and consulting services to address knowledge gaps in efficient farming techniques.</p>
+              <div class="tags">
+                <div class="tag">
+                  <p>Webflow</p>
+                </div>
+                <div class="tag">
+                  <p>ThreeJs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <video src="assests/projects/wos/cover.mp4" autoplay="true" loop></video>
+            </div>
+            <div class="content">
+              <div class="heading">
+                <h6 class="text__secondary">worldofsentients.com</h6>
+                <div class="links">
+                  <a href=""><i class="bi bi-github text__light"></i></a>
+                  <a href=""><i class="bi bi-globe text__light"></i></a>
+                </div>
+              </div>
+              <p class="text__light">Govithena.lk is a web-based platform that connects farmers in Sri Lanka with
+                investors who can provide financial support for crop cultivation, as well as offering technical
+                assistants
+                and consulting services to address knowledge gaps in efficient farming techniques.</p>
+              <div class="tags">
+                <div class="tag">
+                  <p>HTML</p>
+                </div>
+                <div class="tag">
+                  <p>CSS</p>
+                </div>
+                <div class="tag">
+                  <p>PHP</p>
+                </div>
+                <div class="tag">
+                  <p>MySql</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="assests/projects/govithena/p1.png" alt="">
+            </div>
+            <div class="content">
+              <div class="heading">
+                <h6 class="text__secondary">Govithena</h6>
+                <div class="links">
+                  <a href=""><i class="bi bi-github text__light"></i></a>
+                  <a href=""><i class="bi bi-globe text__light"></i></a>
+                </div>
+              </div>
+              <p class="text__light">Govithena.lk is a web-based platform that connects farmers in Sri Lanka with
+                investors who can provide financial support for crop cultivation, as well as offering technical
+                assistants
+                and consulting services to address knowledge gaps in efficient farming techniques.</p>
+              <div class="tags">
+                <div class="tag">
+                  <p>HTML</p>
+                </div>
+                <div class="tag">
+                  <p>CSS</p>
+                </div>
+                <div class="tag">
+                  <p>PHP</p>
+                </div>
+                <div class="tag">
+                  <p>MySql</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section class="technologies" id="technology">
+      <div class="container">
+        <h5 class="text__secondary">Technologies I Use</h5>
+        <!-- <div class="marquee"> -->
+        <div class="slider">
+          <div class="slide">
+            <img src="assests/svg/HTML_5.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/CSS_3.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/JAVASCRIPT.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/TYPESCRIPT.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/VITEJS.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/REACT.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/EXPRESS.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/NODEJS.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/NODE_SASS.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/DJANGO.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/MONGODB.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/FIGMA.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/FIREBASE.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/HEROKU.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/DIGITAL_OCEAN.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/MYSQL_LOGO.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/POSTMAN.SVG" alt="">
+          </div>
+          <div class="slide">
+            <img src="assests/svg/REDUX.SVG" alt="">
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </section>
+  </main>
+
+
+  <script src="/main.js"></script>
 </body>
 
 </html>
