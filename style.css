@@ -1,1 +1,61 @@
-*{margin:0;padding:0;box-sizing:border-box}body,html{overflow:hidden;user-select:none;font-family:Poppins,sans-serif}canvas{position:absolute;top:0;left:0;z-index:-1}nav{padding:1rem;display:flex;justify-content:space-between;align-items:center;margin:0 1rem}nav ul{display:flex;gap:2rem;align-items:center}nav ul li{list-style:none}nav ul li a{text-decoration:none;color:#d6d6d6;font-size:.8rem;transition:color .3s ease-in-out}.git:hover{color:#fff}.linkedin:hover{color:#0077b5}.instergram:hover{color:#e1306c}.logo{padding-block:.5rem;border-radius:.5rem}p{font-size:1rem;font-weight:700;color:#fff}.content{display:flex;justify-content:space-between;align-items:center;flex-direction:column}.content h3{font-size:2rem;font-weight:600;color:#eed202;margin-top:1rem;text-transform:uppercase}.content p{position:absolute;bottom:3rem;left:0;right:0;text-align:center;font-size:.75rem;font-weight:300;color:#ffffffc7;margin:.5rem}@media screen and (max-width: 768px){.content p{padding:0 1rem}nav{padding:1rem 0}}@media screen and (max-width: 480px){.content h3{font-size:1.5rem}.content p{font-size:.75rem}nav{padding:1rem 0}}
+@import url('./variables.css');
+
+body {
+    background-color: var(--primary);
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif !important;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0c0c0c;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #2b3467d5;
+    border-radius: 5px;
+    filter: brightness(0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: (--primary);
+}
+
+.DMmono {
+    font-family: 'DM Mono', monospace !important;
+}
+
+.nav-link-container {
+    right: 0;
+}
+
+@media (max-width: 1024px) {
+    .menuCheck~.nav-link-container {
+        right: -100%;
+        transition: 0.3s ease-in-out;
+    }
+
+    .menuCheck:checked~.nav-link-container {
+        right: 0;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.menu-icon {
+    color: var(--light);
+}
+
+
+.text-vertical {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}

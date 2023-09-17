@@ -7,42 +7,393 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Lugrasimo&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <title>@Janithpm</title>
   <script type="module" crossorigin src="main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a192e',
+            secondary: '#5ff2d0',
+            accent: '#ff4736',
+            light: '#c7cfe9'
+          }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      <p>@Janithpm</p>
+
+  <!-- nav bar -->
+  <nav class="select-none fixed top-0 left-0 right-0 bg-primary">
+    <div class="max-w-7xl h-[70px] mx-auto flex justify-between items-center px-8">
+      <div class="text-light font-semibold">
+        <a href="#">
+          <p class="DMmono">@Janithpm</p>
+        </a>
+      </div>
+      <label class="block lg:hidden cursor-pointer" for="menuCheck">
+        <img src="./assets/svg/menu.svg" class="w-[20px] menu-icon" />
+      </label>
+      <input type="checkbox" class="hidden menuCheck" id="menuCheck" />
+
+      <div class="
+        backdrop-blur-3xl bg-primary/20 shadow-lg shadow-black/60 border-l border-secondary/20 fixed top-0 h-full w-full 
+        lg:relative lg:w-fit lg:h-fit lg:bg-transparent lg:shadow-none lg:border-none
+        nav-link-container">
+        <div class="h-[70px] mx-auto flex justify-end items-center px-8 lg:px-4 block lg:hidden ">
+          <label class="cursor-pointer" for="menuCheck">
+            <img src="./assets/svg/close.svg" class="w-[20px] menu-icon" />
+          </label>
+        </div>
+        <ul class="
+        flex flex-col mt-8 gap-12 items-center text-2xl font-semibold text-light
+        lg:flex-row lg:gap-4 lg:text-light lg:mt-0 lg:text-base lg:font-normal
+        ">
+          <li class=" hover:text-secondary"><a href="#who-am-i">Who Am I ?</a></li>
+          <li class=" hover:text-secondary"><a href="#what-i-offer">What I Offer ?</a></li>
+          <li class=" hover:text-secondary"><a href="#my-works">My Works</a></li>
+          <li class=" hover:text-secondary"><a href="#my-toolbox">My Toolbox</a></li>
+          <li class=" hover:text-secondary"><a href="#get-in-touch">Get In Touch</a></li>
+        </ul>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li>
-        <a class="git" href="https://github.com/janithpm">Github</a>
-      </li>
-      <li>
-        <a class="linkedin" href="https://www.linkedin.com/in/janith-pamuditha-madarasinghe-93a64a1b6">LinkedIn</a>
-      </li>
-      <li>
-        <a class="instergram" href="https://www.instagram.com/janithpm/">Instergram</a>
-      </li>
-    </ul>
   </nav>
+
   <canvas id="canvas"></canvas>
-  <div class="content">
-    <h3>Under Maintenance !</h3>
-    <p>I am currently in the process of updating and redesigning my website to provide you with a better browsing
-      experience.</p>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"
-    integrity="sha512-He29azWb6CQ0yzDGpF61I/SIWlAclbP/Zh95diyYHwpN0VgkH3rtJKJkcApFJG517GxurJQ2UB676HOhB6pyBQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
-    integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- hero section -->
+  <section class="max-w-7xl min-h-screen mx-auto pt-[50px] px-8" id="">
+    <h6 class="
+    text-secondary mb-3 text-lg text-center
+    lg:text-left lg:text-xl
+    ">Hi, I'm</h6>
+    <div class="flex gap-2 lg:flex-col mb-2 flex-wrap justify-center">
+      <h1 class="
+      text-light text-5xl text-center font-bold tracking-wider
+      lg:text-left lg:text-[4.6rem]
+      ">JANITH</h1>
+      <h1 class="
+      text-light text-5xl mb-6 text-center font-bold tracking-wider
+      lg:text-left lg:text-[4.6rem]
+      ">MADARASINGHE</h1>
+    </div>
+    <p class="
+    text-light/80 text-md font-thin mb-6 text-center
+    lg:text-left
+    ">Software Engineer 🧑🏻‍💻 | Creative UI/UX Enthusiast 🎨 | Passionate about Technology 🚀</p>
+    <!-- <ul class="contact_link">
+        <li><a target="_blank" href="https://www.linkedin.com/in/janith-pamuditha-madarasinghe-93a64a1b6/"><i
+              class="bi bi-linkedin"></i></a></li>
+        <li><a target="_blank" href="https://github.com/janithpm"><i class="bi bi-github"></i></a></li>
+        <li><a target="_blank" href="https://www.instagram.com/janithpm/"><i class="bi bi-instagram"></i></a></li>
+        <li><a target="_blank" href="mailto:janithpm9991@gmail.com"><i class="bi bi-envelope"></i></a></li>
+      </ul> -->
+
+    <div class="
+      flex justify-center items-center pt-2
+      lg:justify-start
+    ">
+      <a class="
+      px-4 py-2 rounded bg-accent/90 hover:bg-accent text-white
+      " href="#contact" class="btn">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- about me section -->
+  <section class="max-w-7xl min-h-screen mx-auto pt-[70px] px-8" id="who-am-i">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="">
+        <!-- image -->
+      </div>
+      <div class="">
+        <p class="
+          text-light/90 text-md font-regular mb-6 text-justify
+        ">Hello, I'm Janith Madarasinghe, a passionate software engineer specializing in web and mobile app
+          development. I bring creativity and expertise to streamline digital solutions with a diverse skill set..</p>
+
+        <div class="pt-2 mb-4">
+          <h5 class="
+          text-light text-2xl font-semibold mb-3 border-b border-secondary/70 pb-2
+          ">🔥 Experience</h5>
+          <div class="mt-6">
+            <h6 class="
+            text-light/90 text-[0.95rem] font-regular mb-2
+            ">Ideaboost (pvt) Ltd</h6>
+            <p class="
+            text-light text-xl font-semibold mb-2
+            ">Software Engineer
+              <span class="
+            text-secondary/90 text-[0.8rem] font-regular mt-2
+            "> ( Part Time )</span>
+            </p>
+
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <h5 class="
+          text-light text-2xl font-semibold mb-3 border-b border-secondary/70 pb-2
+          ">🧑🏻‍🎓 Education</h5>
+          <div class="mt-6">
+            <h6 class="
+            text-light/90 text-[0.95rem] font-regular mb-2
+            ">University of Colombo School of Computing</h6>
+            <p class="
+            text-light text-xl font-semibold mb-2
+            ">BSc. (Hons) in Software Engineering</p>
+            <p class="
+            text-secondary/90 text-[0.95rem] font-regular mt-2
+            ">2019 - Present</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services section -->
+  <section class="max-w-7xl min-h-screen mx-auto pt-[70px] px-8" id="what-i-offer">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-2">
+      <div class="text-justify">
+        <h5 class="
+        text-light text-2xl font-semibold mb-3 border-b border-secondary/70 pb-2 mb-5
+        ">💻 Web Development</h5>
+        <div class="">
+          <p class="text-light/90 mb-3 text-[0.95rem] text-justify">
+            I offer comprehensive web development services, leveraging my expertise in front-end and back-end
+            technologies.
+          </p>
+          <ul class="text-light/70 text-sm">
+            <li class="mb-2">User-friendly responsive and visually appealing websites tailored to your specific needs.
+            </li>
+            <li class="mb-2">Full Stack web development (React, NexJs, Node.js, Express, Django, Sprin Boot)</li>
+            <li class="mb-2">Content Management Systems (CMS) Implementation (WordPress, Webflow)</li>
+          </ul>
+        </div>
+        <div class="mt-10">
+          <a class="
+          px-3 py-2 rounded bg-accent/90 hover:bg-accent text-white
+          " href="#contact" class="btn">Let's Make A Web App</a>
+        </div>
+      </div>
+      <div class=""></div>
+      <div class="text-justify">
+        <h5 class="
+        text-light text-2xl font-semibold mb-3 border-b border-secondary/70 pb-2 mb-5
+        ">📱 Mobile App Development</h5>
+        <div class="">
+          <p class="text-light/90 mb-3 text-[0.95rem] text-justify">
+            I specialize in crafting innovative and user-centric mobile applications for Android
+            platform.
+          </p>
+          <ul class="text-light/70 text-sm">
+            <li class="mb-2">Native App Development (Android)</li>
+            <li class="mb-2">Cross-Platform Development (React Native, Flutter)</li>
+            <li class="mb-2">User Interface (UI) Design</li>
+            <li class="mb-2">API Integration</li>
+            <li class="mb-2">App Testing and Quality Assurance</li>
+            <li class="mb-2">App Deployment and App Store Optimization</li>
+          </ul>
+        </div>
+        <div class="mt-10">
+          <a class="
+          px-3 py-2 rounded bg-emerald-500/90 hover:bg-emerald-500 text-white
+          " href="#contact" class="btn">Let's App It Up</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- projects section -->
+  <section class="max-w-7xl min-h-screen mx-auto pt-[70px] mt-12 px-8" id="my-works">
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="col-span-2">
+        <h5 class="
+        text-light text-2xl font-semibold mb-10 border-b border-secondary/70 pb-4
+        ">My Projects</h5>
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-12 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <img class="h-full w-full object-cover" src="./assets/projects/govithena/p1.png" alt="">
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-start my-4">
+              <div class="flex flex-col">
+                <h6 class="text-light font-bold text-2xl">Govithena</h6>
+                <p class="text-[0.8rem] text-light/80">Investing for agricultrue</p>
+              </div>
+              <a target="_blank" href="https://github.com/Govithena/govithena.git">
+                <i class="bi bi-github text-white text-2xl"></i></a>
+            </div>
+            <p class="text-light/80 text-sm">Govithena is a web-based platform that connects farmers in
+              Sri Lanka with
+              investors who can provide financial support for crop cultivation, as well as offering technical
+              assistants
+              and consulting services to address knowledge gaps in efficient farming techniques.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-light rounded-2xl bg-orange-600">HTML</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-700">Css</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-yellow-500/80">Js</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-indigo-700">php</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-800">MySql</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-10 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <img class="h-full w-full object-cover" src="./assets/projects/stylioo-web/hero.jpeg" alt="">
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-start my-4">
+              <div class="flex flex-col">
+                <h6 class="text-light font-bold text-2xl">Stylioo</h6>
+                <p class="text-[0.8rem] text-light/80">Beauty Salon Online Reservation System</p>
+              </div>
+              <a target="_blank" href="https://github.com/Stylioo">
+                <i class="bi bi-github text-white text-2xl"></i></a>
+            </div>
+            <p class="text-light/80 text-sm">Stylioo's online reservation system, revolutionizing the beauty salon
+              industry by connecting customers with seamless appointment booking and reducing wait times while enhancing
+              user experience.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-white rounded-2xl bg-black">Next Js</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-cyan-500/80">Tailwindcss</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-violet-700">Redux</p>
+              <p class="px-4 py-1 text-black rounded-2xl bg-white">Express</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-800">MySql</p>
+              <p class="px-4 py-1 text-black rounded-2xl bg-white">Prisma</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-10 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <img class="h-full w-full object-cover" src="./assets/projects/stylioo-mgmt/banner.jpeg" alt="">
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-start my-4">
+              <div class="flex flex-col">
+                <h6 class="text-light font-bold text-2xl">Stylioo</h6>
+                <p class="text-[0.8rem] text-light/80">Beauty Salon Management System</p>
+              </div>
+              <a target="_blank" href="https://github.com/Stylioo">
+                <i class="bi bi-github text-white text-2xl"></i></a>
+            </div>
+            <p class="text-light/80 text-sm">Stylioo's Beauty Salon Management System is a transformative tool for salon
+              owners. It optimizes operations, automates employee management and payroll, tracks inventory, and
+              generates insightful reports for data-driven decisions, revolutionizing how beauty salons are managed.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-white rounded-2xl bg-cyan-500">React</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-500">MUI</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-violet-700">Redux</p>
+              <p class="px-4 py-1 text-black rounded-2xl bg-white">Express</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-800">MySql</p>
+              <p class="px-4 py-1 text-black rounded-2xl bg-white">Prisma</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-10 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <img class="h-full w-full object-cover" src="./assets/projects/result-sheet/banner.jpeg" alt="">
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-start my-4">
+              <div class="flex flex-col">
+                <h6 class="text-light font-bold text-2xl">Result Sheet</h6>
+                <p class="text-[0.8rem] text-light/80">Exam Result Publishing & Management System</p>
+              </div>
+              <a target="_blank" href="https://github.com/Resultsheet">
+                <i class="bi bi-github text-white text-2xl"></i></a>
+            </div>
+            <p class="text-light/80 text-sm">An intuitive platform for academic performance tracking and result
+              management. Our goal is to simplify the process of monitoring and managing academic achievements.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-white rounded-2xl bg-cyan-500">React</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-500">MUI</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-violet-700">Redux</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-emerald-600">Spring Boot</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-800">MySql</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-10 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <img class="h-full w-full object-cover" src="./assets/projects/workLo/banner.jpg" alt="">
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-start my-4">
+              <div class="flex flex-col">
+                <h6 class="text-light font-bold text-2xl">WorkLo</h6>
+                <p class="text-[0.8rem] text-light/80">Personal Task Manager</p>
+              </div>
+              <a target="_blank" href="https://github.com/worklo">
+                <i class="bi bi-github text-white text-2xl"></i></a>
+            </div>
+            <p class="text-light/80 text-sm">An Android app for more efficient day-to-day task management.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-white rounded-2xl bg-blue-700">Flutter</p>
+              <p class="px-4 py-1 text-light rounded-2xl bg-yellow-600">Firebase</p>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="flex flex-col bg-black/10 rounded-lg shadow mb-10 border border-secondary/20">
+          <div class="rounded-t-lg overflow-hidden h-[250px]">
+            <video src="./assets/projects/wos/cover.mp4" autoplay="true" muted loop></video>
+          </div>
+          <div class="py-2 px-8">
+            <div class="flex justify-between items-center my-4">
+              <a target="_blank" href="https://www.worldofsentients.com/">
+                <h6 class="text-light font-bold text-2xl">worldofsentients.com</h6>
+              </a>
+            </div>
+            <p class="text-light/80 text-sm">Welcome to the extraordinary realm of "World of Sentients"! This
+              captivating
+              website harnesses the cutting-edge power of NFTs and web 3.0 technologies to weave a captivating
+              narrative about enigmatic extraterrestrial beings descending upon our humble planet.</p>
+            <div class="flex gap-3 flex-wrap mt-8 mb-4">
+              <p class="px-4 py-1 text-light rounded-2xl bg-blue-700">Webflow</p>
+              <p class="px-4 py-1 text-black rounded-2xl bg-white">Three Js</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-span-2">c</div>
+    </div>
+
+    <div class="">
+
+    </div>
+  </section>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
 
 </body>
 
