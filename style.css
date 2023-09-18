@@ -1,9 +1,16 @@
 @import url('./variables.css');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
     background-color: var(--primary);
     overflow-x: hidden;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Poppins', sans-serif;
     user-select: none;
 }
 
@@ -58,4 +65,10 @@ body {
 .text-vertical {
     writing-mode: vertical-lr;
     text-orientation: upright;
+}
+
+.instgram-gradient {
+
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
