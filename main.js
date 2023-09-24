@@ -197,7 +197,7 @@ const loadingManager = new THREE.LoadingManager(() => {
     setupAnimation()
 });
 const loader = new GLTFLoader(loadingManager);
-loader.load('./assets/glb/idle.glb', function (gltf) {
+loader.load('https://stylioo.blob.core.windows.net/images/idle.glb', function (gltf) {
     gltf.scene.traverse((item) => {
         if (item instanceof THREE.Mesh) {
             item.castShadow = true
