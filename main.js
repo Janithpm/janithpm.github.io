@@ -1,8 +1,8 @@
-import * as THREE from './node_modules/three/src/Three';
-import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-import { gsap } from "./node_modules/gsap/"
-import { ScrollTrigger } from "./node_modules/gsap/ScrollTrigger"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger);
 
