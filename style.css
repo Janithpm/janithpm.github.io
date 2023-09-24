@@ -72,3 +72,7 @@ body {
     background: #d6249f;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
+
+.fog-shadow {
+    box-shadow: 0 -10rem 8rem 1rem #00000030;
+}

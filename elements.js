@@ -1,5 +1,5 @@
 // imports
-import {tools} from './data/tools'
+import { tools } from './data/tools'
 
 
 // root elements
