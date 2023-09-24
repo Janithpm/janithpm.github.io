@@ -14,6 +14,16 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xffffff, 0);
 document.body.appendChild(renderer.domElement);
 
+const Resize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+}
+Resize()
+window.addEventListener('resize', Resize)
+
+
 camera.position.z = 1.8;
 camera.position.y = 1.3;
 camera.position.x = -0.8;
@@ -194,7 +204,13 @@ const mobileAnimation = () => {
 
 
 const loadingManager = new THREE.LoadingManager(() => {
+    document.querySelector(".loading").classList.add("hidden")
     setupAnimation()
+}, (item, loaded, total) => {
+    document.querySelector(".precentage").textContent = `${(loaded / total * 100).toFixed(1)}%`
+    document.querySelector(".loading").classList.remove("hidden")
+}, (err) => {
+    console.log(err);
 });
 const loader = new GLTFLoader(loadingManager);
 loader.load('https://stylioo.blob.core.windows.net/images/idle.glb', function (gltf) {
@@ -206,7 +222,6 @@ loader.load('https://stylioo.blob.core.windows.net/images/idle.glb', function (g
     })
     model.add(gltf.scene);
     mixer = new THREE.AnimationMixer(model);
-    console.log(gltf.animations);
     const action = mixer.clipAction(gltf.animations[0]);
     action.loop = THREE.loop;
     action.play();

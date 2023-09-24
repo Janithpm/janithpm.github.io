@@ -52,9 +52,17 @@
 
 <body>
 
+  <div class="loading fixed top-0 bottom-0 left-0 right-0 bg-primary z-50 flex flex-col justify-center items-center">
+    <span class="loader">
+      <p class="precentage text-flicker-in-glow">0.0%</p>
+    </span>
+    <div class="mt-[70px]"><span class="text-loader text-gray-200 text-flicker-in-glow">Loading assets, Please
+        wait...</span></div>
+  </div>
+
   <div class="page">
     <!-- nav bar -->
-    <nav id="navbar" class="select-none fixed top-0 left-0 right-0 bg-primary z-50">
+    <nav id="navbar" class="select-none fixed top-0 left-0 right-0 bg-primary z-40">
       <div class="max-w-7xl h-[70px] mx-auto flex justify-between items-center px-8">
         <div class="text-light font-semibold">
           <a href="#">
@@ -99,7 +107,7 @@
     <canvas id="canvas" class="fixed top-0 left-0 bottom-0 right-0 -z-10"></canvas>
     <!-- alert -->
     <div id="alert"
-      class="fixed top-[5rem] w-[400px] rounded-r-lg left-[-100%] z-50 backdrop-blur-lg shadow-[0_0_60px_-10px_rgba(0,0,0,0.1)] duration-300">
+      class="fixed top-[5rem] w-[400px] rounded-r-lg left-[-100%] z-40 backdrop-blur-lg shadow-[0_0_60px_-10px_rgba(0,0,0,0.1)] duration-300">
       <div class="text-white text-left px-4 py-3">
         <p class="text-sm"></p>
       </div>

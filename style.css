@@ -76,3 +76,74 @@ body {
 .fog-shadow {
     box-shadow: 0 -10rem 8rem 1rem #00000030;
 }
+
+.loader {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.precentage {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 95px;
+    height: 95px;
+    border: 2px solid #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: rotation 2s ease-in-out infinite alternate;
+}
+
+.loader::after {
+    border-color: #5ff2d0;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.text-loader {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #FFF;
+}
+
+.text-flicker-in-glow {
+    -webkit-animation: text-flicker-in-glow 4s linear infinite;
+    animation: text-flicker-in-glow 4s linear infinite;
+}
+
+@keyframes text-flicker-in-glow {
+    0% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
