@@ -1,0 +1,149 @@
+@import url('./variables.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary);
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0c0c0c;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #2b3467d5;
+    border-radius: 5px;
+    filter: brightness(0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: (--primary);
+}
+
+.DMmono {
+    font-family: 'DM Mono', monospace !important;
+}
+
+.nav-link-container {
+    right: 0;
+}
+
+@media (max-width: 1024px) {
+    .menuCheck~.nav-link-container {
+        right: -100%;
+        transition: 0.3s ease-in-out;
+    }
+
+    .menuCheck:checked~.nav-link-container {
+        right: 0;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.menu-icon {
+    color: var(--light);
+}
+
+
+.text-vertical {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+.instgram-gradient {
+
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.fog-shadow {
+    box-shadow: 0 -10rem 8rem 1rem #00000030;
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.precentage {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 95px;
+    height: 95px;
+    border: 2px solid #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: rotation 2s ease-in-out infinite alternate;
+}
+
+.loader::after {
+    border-color: #5ff2d0;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.text-loader {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #FFF;
+}
+
+.text-flicker-in-glow {
+    -webkit-animation: text-flicker-in-glow 4s linear infinite;
+    animation: text-flicker-in-glow 4s linear infinite;
+}
+
+@keyframes text-flicker-in-glow {
+    0% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
