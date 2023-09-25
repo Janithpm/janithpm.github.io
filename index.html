@@ -22,10 +22,17 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/GLTFLoader.jss">
   </script> -->
   <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-
-
-
-
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "../build/three.module.js",
+        "three/addons/": "./jsm/"
+      }
+    }
+  </script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script type="module" crossorigin src="mailer.js"></script>
+  <script type="module" crossorigin src="main.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -39,6 +46,13 @@
         }
       }
     }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('menuCheck').checked = false;
+      })
+    })
+
   </script>
 
   <script type="importmap">
@@ -451,6 +465,157 @@
     text-light text-2xl font-semibold mb-10 border-b border-secondary/70 pb-4
     ">My Toolbox</h5>
     <div id="tools" class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10">
+      <!-- HTML code for all 40 SVGs -->
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/HTML_5.SVG" alt="HTML 5">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/CSS_3.SVG" alt="CSS 3">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/JAVASCRIPT.SVG" alt="JavaScript">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/TYPESCRIPT.SVG" alt="TypeScript">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/VITEJS.SVG" alt="Vite.js">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/REACT.SVG" alt="React">
+      </div>
+
+      <div
+        class="bg-white/90 hover:bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/REACT_ROUTER.SVG" alt="React Router">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/TAILWIND_CSS.SVG" alt="Tailwind CSS">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/BOOTSTRAP.SVG" alt="Bootstrap">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/MATERIAL_UI.SVG" alt="Material-UI">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/THREE_JS.SVG" alt="Three.js">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/REDUX.SVG" alt="Redux">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/NEXTJS.SVG" alt="Next.js">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/EXPRESS.SVG" alt="Express">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/NODEJS.SVG" alt="Node.js">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/NODE_SASS.SVG" alt="Node Sass">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/SPRING_BOOT.SVG" alt="Spring Boot">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/DJANGO.SVG" alt="Django">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/MYSQL_LOGO.SVG" alt="MySQL Logo">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/MONGODB.SVG" alt="MongoDB">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/GIT.SVG" alt="Git">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/GITHUB.SVG" alt="GitHub">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/FIGMA.SVG" alt="Figma">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/FIREBASE.SVG" alt="Firebase">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/HEROKU.SVG" alt="Heroku">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/AWS.SVG" alt="AWS">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/NETLIFY.SVG" alt="Netlify">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/Azure.SVG" alt="Azure">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/VSCODE.SVG" alt="Visual Studio Code">
+      </div>
+
+      <div
+        class="bg-white/90 hover-bg-white transition-ease-in-out duration-300 shadow-md rounded shadow-black/20 border-2 border-secondary/30 p-4 flex justify-center items-center">
+        <img class="w-[80%] h-[80%]" src="./assets/svg/toolbox/POSTMAN.SVG" alt="Postman">
+      </div>
+
     </div>
   </section>
 
@@ -533,11 +698,6 @@
       Made with <i class="bi bi-heart-fill text-red-500 mx-1"></i> by Janithpm
     </p>
   </footer>
-
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
-  <script src="./navbar.js"></script>
-  <script src="./mailer.js"></script>
-
 </body>
 
 </html>
