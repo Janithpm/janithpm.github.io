@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * System fonts come first; the Google Fonts files (self-hosted via Fontsource,
+ * under "… Variable" names) only download on devices that lack the earlier ones.
+ */
+@theme {
+	--font-display: "Arial Rounded MT Bold", "SF Pro Rounded", ui-rounded, Nunito, "Nunito Variable", ui-sans-serif, system-ui, sans-serif;
+	--font-sans: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Roboto Variable", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "SF Mono", ui-monospace, Menlo, "JetBrains Mono", "JetBrains Mono Variable", Consolas, monospace;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		@apply bg-white text-zinc-700 dark:bg-zinc-950 dark:text-zinc-300;
+	}
+
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+	}
+
+	::selection {
+		@apply bg-teal-500/20 text-zinc-900 dark:text-zinc-50;
+	}
+
+	:focus-visible {
+		@apply rounded-sm outline-2 outline-offset-2 outline-teal-500;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+}
