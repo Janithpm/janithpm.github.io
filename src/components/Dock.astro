@@ -36,17 +36,18 @@ const item =
 	'group relative grid size-8 place-items-center rounded-xl text-zinc-500 transition duration-200 ease-out hover:-translate-y-1 hover:scale-110 hover:bg-zinc-100 hover:text-zinc-900 motion-reduce:transform-none sm:size-10 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50';
 const tooltip =
 	'pointer-events-none absolute -top-9 left-1/2 hidden -translate-x-1/2 translate-y-1 rounded-md bg-zinc-900 px-2 py-1 text-xs font-medium whitespace-nowrap text-zinc-50 opacity-0 shadow-sm transition duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:block dark:bg-zinc-50 dark:text-zinc-900';
-const divider = 'mx-1 h-6 w-px bg-zinc-200 dark:bg-zinc-800';
+const divider = 'mx-1 h-6 w-px self-center bg-zinc-200 dark:bg-zinc-800';
 ---
 
 <nav
 	aria-label="Primary"
-	class="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-40 -translate-x-1/2"
+	class="dock-in fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-40 -translate-x-1/2"
 >
 	<ul
-		class="flex items-center gap-1 rounded-2xl border border-zinc-200/80 bg-white/75 p-1.5 shadow-lg shadow-zinc-900/5 backdrop-blur-xl dark:border-zinc-800/80 dark:bg-zinc-900/75 dark:shadow-black/30"
+		id="dock"
+		class="flex h-[46px] items-end gap-1 rounded-2xl border sm:h-[54px] border-zinc-200/80 bg-white/75 p-1.5 shadow-lg shadow-zinc-900/5 backdrop-blur-xl dark:border-zinc-800/80 dark:bg-zinc-900/75 dark:shadow-black/30"
 	>
-		<li>
+		<li class="self-center">
 			<a
 				href="#top"
 				class="flex h-8 items-center rounded-xl px-2.5 font-display text-sm font-bold whitespace-nowrap text-zinc-900 transition-colors hover:bg-zinc-100 sm:h-10 sm:px-3 sm:text-base dark:text-zinc-50 dark:hover:bg-zinc-800"
@@ -62,7 +63,7 @@ const divider = 'mx-1 h-6 w-px bg-zinc-200 dark:bg-zinc-800';
 		{
 			nav.map((link) => (
 				<li>
-					<a href={link.href} aria-label={link.label} data-dock-link class={item}>
+					<a href={link.href} aria-label={link.label} data-dock-link data-mag class={item}>
 						<svg class="size-4.5 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={link.icon} />
 						<span class="absolute -bottom-0.5 hidden size-1 rounded-full bg-teal-500 group-aria-current:block" aria-hidden="true" />
 						<span class={tooltip} aria-hidden="true">{link.label}</span>
@@ -84,6 +85,7 @@ const divider = 'mx-1 h-6 w-px bg-zinc-200 dark:bg-zinc-800';
 						aria-label={link.label}
 						target={link.href!.startsWith('http') ? '_blank' : undefined}
 						rel={link.href!.startsWith('http') ? 'noopener noreferrer' : undefined}
+						data-mag
 						class={item}
 					>
 						{'filled' in link ? (
@@ -100,7 +102,7 @@ const divider = 'mx-1 h-6 w-px bg-zinc-200 dark:bg-zinc-800';
 		<li aria-hidden="true" class={divider}></li>
 
 		<li>
-			<button id="theme-toggle" type="button" aria-label="Toggle dark mode" class={item}>
+			<button id="theme-toggle" type="button" aria-label="Toggle dark mode" data-mag class={item}>
 				<svg class="size-4.5 sm:size-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 				</svg>
@@ -115,10 +117,72 @@ const divider = 'mx-1 h-6 w-px bg-zinc-200 dark:bg-zinc-800';
 </nav>
 
 <script>
-	document.getElementById('theme-toggle')?.addEventListener('click', () => {
-		const dark = document.documentElement.classList.toggle('dark');
-		localStorage.setItem('theme', dark ? 'dark' : 'light');
+	const root = document.documentElement;
+	const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	// Theme toggle: the new theme spreads out in a circle from the button,
+	// using the View Transitions API where the browser supports it.
+	const toggle = document.getElementById('theme-toggle');
+	toggle?.addEventListener('click', async () => {
+		const apply = () => {
+			const dark = root.classList.toggle('dark');
+			try {
+				localStorage.setItem('theme', dark ? 'dark' : 'light');
+			} catch {}
+		};
+
+		if (!document.startViewTransition || reduceMotion) {
+			apply();
+			return;
+		}
+
+		const rect = toggle.getBoundingClientRect();
+		const x = rect.left + rect.width / 2;
+		const y = rect.top + rect.height / 2;
+		const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+		const transition = document.startViewTransition(apply);
+		await transition.ready;
+		root.animate(
+			{ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+			{ duration: 550, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' },
+		);
 	});
+
+	// Dock magnification: icons grow with the cursor's proximity, like the
+	// macOS dock. Mouse and trackpad only; off for reduced motion.
+	const dock = document.getElementById('dock');
+	if (dock && !reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+		const items = [...dock.querySelectorAll<HTMLElement>('[data-mag]')];
+		const BASE = 40;
+		const MAX = 54;
+		const RANGE = 110;
+		let frame = 0;
+		let pointerX = 0;
+
+		dock.classList.add('dock-magnify');
+
+		const update = () => {
+			frame = 0;
+			for (const el of items) {
+				const rect = el.getBoundingClientRect();
+				const distance = Math.abs(pointerX - (rect.left + rect.width / 2));
+				const t = Math.max(0, 1 - distance / RANGE);
+				const size = BASE + (MAX - BASE) * (0.5 - Math.cos(Math.PI * t) / 2);
+				el.style.width = el.style.height = `${size.toFixed(1)}px`;
+			}
+		};
+
+		dock.addEventListener('pointermove', (event) => {
+			pointerX = event.clientX;
+			if (!frame) frame = requestAnimationFrame(update);
+		});
+		dock.addEventListener('pointerleave', () => {
+			cancelAnimationFrame(frame);
+			frame = 0;
+			for (const el of items) el.style.width = el.style.height = '';
+		});
+	}
 
 	// Mark the dock item for the section currently in view.
 	const links = new Map<string, HTMLAnchorElement>();

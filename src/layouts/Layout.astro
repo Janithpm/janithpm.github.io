@@ -65,6 +65,7 @@ const personSchema = {
 			const stored = localStorage.getItem('theme');
 			const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
 			document.documentElement.classList.toggle('dark', dark);
+			document.documentElement.classList.add('js');
 		</script>
 	</head>
 	<body class="min-h-dvh font-sans">
@@ -74,5 +75,24 @@ const personSchema = {
 			>Skip to content</a
 		>
 		<slot />
+
+		<script>
+			// Reveal [data-reveal] elements as they scroll into view, staggering
+			// those that arrive together.
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries
+						.filter((entry) => entry.isIntersecting)
+						.forEach((entry, i) => {
+							const el = entry.target as HTMLElement;
+							el.style.setProperty('--reveal-delay', `${i * 90}ms`);
+							el.classList.add('is-visible');
+							observer.unobserve(el);
+						});
+				},
+				{ rootMargin: '0px 0px -8% 0px' },
+			);
+			document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+		</script>
 	</body>
 </html>

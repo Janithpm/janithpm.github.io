@@ -21,6 +21,7 @@
 
 	body {
 		@apply bg-white text-zinc-700 dark:bg-zinc-950 dark:text-zinc-300;
+		overflow-x: clip;
 	}
 
 	h1,
@@ -41,5 +42,90 @@
 		html {
 			scroll-behavior: auto;
 		}
+	}
+}
+
+/* ---------- Motion ---------- */
+
+/* Hero: content rises in on load, one line after another (set --d per element). */
+@keyframes hero-in {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 18px, 0);
+		filter: blur(6px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+		filter: none;
+	}
+}
+
+.hero-in {
+	animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+	animation-delay: var(--d, 0ms);
+}
+
+/* Dock slides up once the hero has settled. */
+@keyframes dock-in {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 28px, 0) scale(0.96);
+	}
+}
+
+.dock-in {
+	animation: dock-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.7s both;
+}
+
+/* Scroll reveal: only hidden when JavaScript is running to reveal it again. */
+html.js [data-reveal] {
+	opacity: 0;
+	transform: translate3d(0, 28px, 0);
+	transition:
+		opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+		transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+	transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js [data-reveal].is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* Theme switch: let the script's circular clip-path do the transition. */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+/* Dock magnification (enabled by script on mouse/trackpad devices). Sizes are
+   set inline; the hover lift is dropped so the two effects don't stack. */
+.dock-magnify [data-mag] {
+	transition-property: width, height, color, background-color;
+	transition-duration: 120ms;
+}
+
+.dock-magnify [data-mag]:hover {
+	translate: none;
+	scale: none;
+}
+
+.dock-magnify [data-mag] svg {
+	width: 50%;
+	height: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-in,
+	.dock-in {
+		animation: none;
+	}
+
+	html.js [data-reveal] {
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 }

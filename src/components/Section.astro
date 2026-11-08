@@ -11,6 +11,7 @@ const { id, title, count } = Astro.props;
 
 <section id={id} aria-labelledby={`${id}-heading`} class="pt-16 sm:pt-20">
 	<h2
+		data-reveal
 		id={`${id}-heading`}
 		class="mb-10 flex items-start gap-1.5 text-4xl leading-none font-bold tracking-tighter text-zinc-900 sm:text-5xl dark:text-zinc-50"
 	>

@@ -18,27 +18,27 @@ const year = new Date().getFullYear();
 	<main id="main" class="mx-auto max-w-3xl px-6">
 		<!-- Hero -->
 		<section id="top" class="pt-10 sm:pt-14">
-			<p class="mb-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+			<p class="hero-in mb-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
 				<span class="relative flex size-2">
 					<span class="absolute inline-flex size-full animate-ping rounded-full bg-teal-500 opacity-60 motion-reduce:hidden"></span>
 					<span class="relative inline-flex size-2 rounded-full bg-teal-500"></span>
 				</span>
 				{profile.location}
 			</p>
-			<h1 class="text-5xl leading-none font-bold tracking-tighter text-balance text-zinc-900 sm:text-6xl dark:text-zinc-50">
+			<h1 style="--d: 80ms" class="hero-in text-5xl leading-none font-bold tracking-tighter text-balance text-zinc-900 sm:text-6xl dark:text-zinc-50">
 				{profile.name}
 			</h1>
-			<p class="mt-5 text-lg text-balance text-zinc-600 sm:text-xl dark:text-zinc-400">
+			<p style="--d: 180ms" class="hero-in mt-5 text-lg text-balance text-zinc-600 sm:text-xl dark:text-zinc-400">
 				{profile.tagline}
 			</p>
 
-			<div class="mt-8 space-y-4 leading-relaxed">
+			<div style="--d: 280ms" class="hero-in mt-8 space-y-4 leading-relaxed">
 				{intro.map((paragraph) => <p>{paragraph}</p>)}
 			</div>
 
 			{
 				contactLinks.length > 0 && (
-					<ul class="mt-8 flex flex-wrap gap-3">
+					<ul style="--d: 380ms" class="hero-in mt-8 flex flex-wrap gap-3">
 						{contactLinks.map((link, i) => (
 							<li>
 								<a
@@ -68,7 +68,7 @@ const year = new Date().getFullYear();
 					projects.map((project, i) => {
 						const primary = project.links[0];
 						return (
-							<li class="group grid grid-cols-[2.25rem_1fr] items-baseline gap-x-3 border-t border-zinc-200 py-6 last:border-b sm:grid-cols-[3rem_1fr] sm:py-7 dark:border-zinc-800">
+							<li data-reveal class="group grid grid-cols-[2.25rem_1fr] items-baseline gap-x-3 border-t border-zinc-200 py-6 last:border-b sm:grid-cols-[3rem_1fr] sm:py-7 dark:border-zinc-800">
 								<span class="font-mono text-sm text-teal-700 dark:text-teal-400">{String(i + 1).padStart(2, '0')}</span>
 								<h3 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
 									<a href={primary.href} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-teal-700 dark:hover:text-teal-400">
@@ -110,7 +110,7 @@ const year = new Date().getFullYear();
 			<ol>
 				{
 					experience.map((job) => (
-						<li class="border-t border-zinc-200 py-6 last:border-b sm:py-7 dark:border-zinc-800">
+						<li data-reveal class="border-t border-zinc-200 py-6 last:border-b sm:py-7 dark:border-zinc-800">
 							<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
 								<h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">{job.role}</h3>
 								<p class="font-mono text-xs text-zinc-500 dark:text-zinc-400">{job.period}</p>
@@ -139,46 +139,50 @@ const year = new Date().getFullYear();
 
 		<!-- Education -->
 		<Section id="education" title="Education">
-			<h3 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">{education.degree}</h3>
-			<p class="mt-2 text-zinc-600 dark:text-zinc-400">{education.school}</p>
-			<p class="mt-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">{education.period}</p>
-			<p class="mt-4 max-w-prose leading-relaxed text-zinc-600 dark:text-zinc-400">{education.summary}</p>
+			<div data-reveal>
+				<h3 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">{education.degree}</h3>
+				<p class="mt-2 text-zinc-600 dark:text-zinc-400">{education.school}</p>
+				<p class="mt-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">{education.period}</p>
+				<p class="mt-4 max-w-prose leading-relaxed text-zinc-600 dark:text-zinc-400">{education.summary}</p>
+			</div>
 		</Section>
 
 		<!-- Contact -->
 		<Section id="contact" title={contact.title}>
-			<p class="max-w-prose text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{contact.body}</p>
-			{
-				profile.links.email && (
-					<a
-						href={`mailto:${profile.links.email}`}
-						class="mt-8 inline-block font-display text-2xl font-bold tracking-tight text-zinc-900 underline decoration-teal-500/50 decoration-2 underline-offset-8 transition-colors hover:text-teal-700 hover:decoration-teal-500 sm:text-3xl dark:text-zinc-50 dark:hover:text-teal-400"
-					>
-						{profile.links.email}
-					</a>
-				)
-			}
-			{
-				contactLinks.length > 0 && (
-					<ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-						{contactLinks
-							.filter((link) => link.label !== 'Email')
-							.map((link) => (
-								<li>
-									<a
-										href={link.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="inline-flex items-center gap-1 font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
-									>
-										{link.label}
-										<span aria-hidden="true">↗</span>
-									</a>
-								</li>
-							))}
-					</ul>
-				)
-			}
+			<div data-reveal>
+				<p class="max-w-prose text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{contact.body}</p>
+				{
+					profile.links.email && (
+						<a
+							href={`mailto:${profile.links.email}`}
+							class="mt-8 inline-block font-display text-2xl font-bold tracking-tight text-zinc-900 underline decoration-teal-500/50 decoration-2 underline-offset-8 transition-colors hover:text-teal-700 hover:decoration-teal-500 sm:text-3xl dark:text-zinc-50 dark:hover:text-teal-400"
+						>
+							{profile.links.email}
+						</a>
+					)
+				}
+				{
+					contactLinks.length > 0 && (
+						<ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+							{contactLinks
+								.filter((link) => link.label !== 'Email')
+								.map((link) => (
+									<li>
+										<a
+											href={link.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="inline-flex items-center gap-1 font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
+										>
+											{link.label}
+											<span aria-hidden="true">↗</span>
+										</a>
+									</li>
+								))}
+						</ul>
+					)
+				}
+			</div>
 		</Section>
 	</main>
 
