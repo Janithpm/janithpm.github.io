@@ -4,13 +4,13 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// Set SITE_URL once you have a custom domain. On Vercel, the production
-// *.vercel.app URL is used automatically until then.
+// Deployed to GitHub Pages at https://janithpm.github.io. Set SITE_URL to
+// override (e.g. a custom domain); on Vercel the production URL is used.
 const site =
 	process.env.SITE_URL ??
 	(process.env.VERCEL_PROJECT_PRODUCTION_URL
 		? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-		: 'http://localhost:4321');
+		: 'https://janithpm.github.io');
 
 // https://astro.build/config
 export default defineConfig({
