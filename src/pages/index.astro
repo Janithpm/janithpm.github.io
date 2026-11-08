@@ -1,25 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Dock from '../components/Dock.astro';
 import Section from '../components/Section.astro';
-import Tags from '../components/Tags.astro';
-import { profile, intro, experience, interests, principles, education } from '../data/profile';
+import { profile, intro, projects, education, experience, contact } from '../data/profile';
 
 const contactLinks = [
 	{ label: 'Email', href: profile.links.email && `mailto:${profile.links.email}` },
 	{ label: 'GitHub', href: profile.links.github },
 	{ label: 'LinkedIn', href: profile.links.linkedin },
+	{ label: 'X', href: profile.links.x },
 ].filter((link) => link.href);
 
 const year = new Date().getFullYear();
 ---
 
 <Layout>
-	<Header />
-
 	<main id="main" class="mx-auto max-w-3xl px-6">
 		<!-- Hero -->
-		<section id="top" class="pt-20 pb-16 sm:pt-28">
+		<section id="top" class="pt-10 sm:pt-14">
 			<p class="mb-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
 				<span class="relative flex size-2">
 					<span class="absolute inline-flex size-full animate-ping rounded-full bg-teal-500 opacity-60 motion-reduce:hidden"></span>
@@ -27,11 +25,11 @@ const year = new Date().getFullYear();
 				</span>
 				{profile.location}
 			</p>
-			<h1 class="text-4xl font-bold text-balance text-zinc-900 sm:text-5xl dark:text-zinc-50">
+			<h1 class="text-5xl leading-none font-bold tracking-tighter text-balance text-zinc-900 sm:text-6xl dark:text-zinc-50">
 				{profile.name}
 			</h1>
-			<p class="mt-4 text-lg text-balance text-zinc-600 sm:text-xl dark:text-zinc-400">
-				{profile.role}. {profile.tagline}
+			<p class="mt-5 text-lg text-balance text-zinc-600 sm:text-xl dark:text-zinc-400">
+				{profile.tagline}
 			</p>
 
 			<div class="mt-8 space-y-4 leading-relaxed">
@@ -63,58 +61,42 @@ const year = new Date().getFullYear();
 			}
 		</section>
 
-		<!-- Experience -->
-		<Section id="work" title="Work">
-			<ol class="space-y-14">
+		<!-- Projects -->
+		<Section id="projects" title="Projects" count={projects.length}>
+			<ol>
 				{
-					experience.map((job) => {
-						const link = job.linkKey && profile.links[job.linkKey];
+					projects.map((project, i) => {
+						const primary = project.links[0];
 						return (
-							<li class="grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8">
-								<div class="font-mono text-xs leading-6 text-zinc-500 dark:text-zinc-400">
-									{job.period && <p>{job.period}</p>}
-									{job.meta && <p>{job.meta}</p>}
-								</div>
-								<div>
-									<h3 class="font-semibold text-zinc-900 dark:text-zinc-50">
-										{job.title}
-										<span class="text-zinc-400 dark:text-zinc-500"> · </span>
-										{link ? (
-											<a
-												href={link}
-												target="_blank"
-												rel="noopener noreferrer"
-												class="text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
-											>
-												{job.org}
-											</a>
-										) : (
-											job.org
-										)}
-									</h3>
-
-									{job.progression && (
-										<ol class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
-											{job.progression.map((step, i) => (
-												<li class="flex items-center gap-2">
-													{i > 0 && <span aria-hidden="true">→</span>}
-													<span>
-														<span class="text-zinc-700 dark:text-zinc-300">{step.role}</span> ({step.date})
-													</span>
-												</li>
-											))}
-										</ol>
-									)}
-
-									<div class="mt-4 space-y-4 leading-relaxed">
-										{job.body.map((paragraph) => <p>{paragraph}</p>)}
-									</div>
-
-									{job.tags && (
-										<div class="mt-5">
-											<Tags tags={job.tags} />
-										</div>
-									)}
+							<li class="group grid grid-cols-[2.25rem_1fr] items-baseline gap-x-3 border-t border-zinc-200 py-6 last:border-b sm:grid-cols-[3rem_1fr] sm:py-7 dark:border-zinc-800">
+								<span class="font-mono text-sm text-teal-700 dark:text-teal-400">{String(i + 1).padStart(2, '0')}</span>
+								<h3 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50">
+									<a href={primary.href} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-teal-700 dark:hover:text-teal-400">
+										{project.name}
+										<span
+											class="ml-1 inline-block text-lg text-zinc-400 transition duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-teal-600 motion-reduce:transform-none sm:text-2xl dark:text-zinc-500 dark:group-hover:text-teal-400"
+											aria-hidden="true">↗</span
+										>
+									</a>
+								</h3>
+								<p class="col-start-2 mt-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">{project.role}</p>
+								<div class="col-start-2 mt-3">
+									<p class="leading-relaxed text-zinc-600 dark:text-zinc-400">{project.summary}</p>
+									<ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+										{project.links.map((link) => (
+											<li>
+												<a
+													href={link.href}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="inline-flex items-center gap-1 font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
+												>
+													{link.label}
+													<span aria-hidden="true">↗</span>
+												</a>
+											</li>
+										))}
+									</ul>
 								</div>
 							</li>
 						);
@@ -123,35 +105,32 @@ const year = new Date().getFullYear();
 			</ol>
 		</Section>
 
-		<!-- Applied AI and IoT -->
-		<Section id="interests" title="Applied AI & IoT">
-			<p class="mb-10 text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">{interests.lead}</p>
-			<div class="grid gap-4">
+		<!-- Experience -->
+		<Section id="experience" title="Experience">
+			<ol>
 				{
-					interests.areas.map((area) => (
-						<article class="rounded-xl border border-zinc-200 p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700">
-							<h3 class="font-semibold text-zinc-900 dark:text-zinc-50">{area.title}</h3>
-							<p class="mt-3 leading-relaxed">{area.body}</p>
-							<div class="mt-5">
-								<Tags tags={area.tags} />
+					experience.map((job) => (
+						<li class="border-t border-zinc-200 py-6 last:border-b sm:py-7 dark:border-zinc-800">
+							<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+								<h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">{job.role}</h3>
+								<p class="font-mono text-xs text-zinc-500 dark:text-zinc-400">{job.period}</p>
 							</div>
-						</article>
-					))
-				}
-			</div>
-		</Section>
-
-		<!-- Principles -->
-		<Section id="approach" title="How I like to build">
-			<ol class="grid gap-10">
-				{
-					principles.map((principle, i) => (
-						<li class="grid gap-2 sm:grid-cols-[3rem_1fr]">
-							<span class="font-mono text-sm text-teal-700 dark:text-teal-400">0{i + 1}</span>
-							<div>
-								<h3 class="font-semibold text-zinc-900 dark:text-zinc-50">{principle.title}</h3>
-								<p class="mt-2 leading-relaxed">{principle.body}</p>
-							</div>
+							<p class="mt-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+								<span class="font-medium text-zinc-800 dark:text-zinc-200">{job.org}</span> · {job.location}
+							</p>
+							{job.progression && (
+								<ol class="mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-zinc-600 dark:text-zinc-400" aria-label="Progression">
+									{job.progression.map((step, i) => (
+										<li class="flex items-baseline gap-2">
+											{i > 0 && <span class="text-zinc-400 dark:text-zinc-600" aria-hidden="true">→</span>}
+											<span>
+												{step.role} <span class="font-mono text-xs text-teal-700 dark:text-teal-400">{step.date}</span>
+											</span>
+										</li>
+									))}
+								</ol>
+							)}
+							<p class="mt-3 max-w-prose leading-relaxed text-zinc-600 dark:text-zinc-400">{job.summary}</p>
 						</li>
 					))
 				}
@@ -160,17 +139,50 @@ const year = new Date().getFullYear();
 
 		<!-- Education -->
 		<Section id="education" title="Education">
-			<div class="grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8">
-				<p class="font-mono text-xs leading-6 text-zinc-500 dark:text-zinc-400">{education.period}</p>
-				<div>
-					<h3 class="font-semibold text-zinc-900 dark:text-zinc-50">{education.degree}</h3>
-					<p class="mt-1">{education.school}</p>
-				</div>
-			</div>
+			<h3 class="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">{education.degree}</h3>
+			<p class="mt-2 text-zinc-600 dark:text-zinc-400">{education.school}</p>
+			<p class="mt-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400">{education.period}</p>
+			<p class="mt-4 max-w-prose leading-relaxed text-zinc-600 dark:text-zinc-400">{education.summary}</p>
+		</Section>
+
+		<!-- Contact -->
+		<Section id="contact" title={contact.title}>
+			<p class="max-w-prose text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{contact.body}</p>
+			{
+				profile.links.email && (
+					<a
+						href={`mailto:${profile.links.email}`}
+						class="mt-8 inline-block font-display text-2xl font-bold tracking-tight text-zinc-900 underline decoration-teal-500/50 decoration-2 underline-offset-8 transition-colors hover:text-teal-700 hover:decoration-teal-500 sm:text-3xl dark:text-zinc-50 dark:hover:text-teal-400"
+					>
+						{profile.links.email}
+					</a>
+				)
+			}
+			{
+				contactLinks.length > 0 && (
+					<ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+						{contactLinks
+							.filter((link) => link.label !== 'Email')
+							.map((link) => (
+								<li>
+									<a
+										href={link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="inline-flex items-center gap-1 font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
+									>
+										{link.label}
+										<span aria-hidden="true">↗</span>
+									</a>
+								</li>
+							))}
+					</ul>
+				)
+			}
 		</Section>
 	</main>
 
-	<footer class="mx-auto max-w-3xl px-6">
+	<footer class="mx-auto mt-16 max-w-3xl px-6 pb-24 sm:mt-20">
 		<div
 			class="flex flex-col gap-4 border-t border-zinc-200 py-10 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800 dark:text-zinc-400"
 		>
@@ -190,4 +202,6 @@ const year = new Date().getFullYear();
 			}
 		</div>
 	</footer>
+
+	<Dock />
 </Layout>

@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile } from '../data/profile';
+---
+
+<Layout title="Page not found">
+	<main id="main" class="mx-auto flex min-h-dvh max-w-3xl flex-col px-6">
+		<a href="/" class="mt-10 self-start font-display text-base font-bold text-zinc-900 sm:mt-14 dark:text-zinc-50">
+			<span class="text-zinc-400 dark:text-zinc-500">@</span>{profile.handle}<span class="text-teal-600 dark:text-teal-400">.</span>
+		</a>
+
+		<div class="my-auto py-20">
+			<p class="font-mono text-sm text-teal-700 dark:text-teal-400">404</p>
+			<h1 class="mt-3 text-5xl leading-none font-bold tracking-tighter text-zinc-900 sm:text-6xl dark:text-zinc-50">
+				Page not found
+			</h1>
+			<p class="mt-5 max-w-prose text-lg text-zinc-600 dark:text-zinc-400">
+				The page you are looking for does not exist or has moved.
+			</p>
+			<a
+				href="/"
+				class="mt-8 inline-flex h-10 items-center gap-2 rounded-md bg-zinc-900 px-4 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+			>
+				<span aria-hidden="true">←</span> Back to home
+			</a>
+		</div>
+	</main>
+</Layout>

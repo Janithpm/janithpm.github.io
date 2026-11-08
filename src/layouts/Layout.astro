@@ -6,21 +6,25 @@ import '../styles/global.css';
 import { profile } from '../data/profile';
 
 interface Props {
+	/** Shown after the handle, e.g. "Blog" → "@Janithpm - Blog". */
 	title?: string;
 	description?: string;
 }
 
-const { title = `${profile.name} · ${profile.role}`, description = profile.description } = Astro.props;
+const { title: suffix = `${profile.name}, ${profile.role}`, description = profile.description } = Astro.props;
+const title = `@${profile.handle} - ${suffix}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+const xHandle = profile.links.x && `@${profile.links.x.split('/').pop()}`;
 
-const sameAs = [profile.links.github, profile.links.linkedin, profile.links.codeDock].filter(Boolean);
+const sameAs = [profile.links.github, profile.links.linkedin, profile.links.x, profile.links.codeDock].filter(Boolean);
 const personSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
 	name: profile.name,
 	jobTitle: profile.role,
 	url: Astro.site?.href,
-	address: { '@type': 'PostalAddress', addressLocality: 'Colombo', addressCountry: 'LK' },
+	address: { '@type': 'PostalAddress', addressCountry: 'LK' },
 	alumniOf: 'University of Colombo School of Computing',
 	worksFor: { '@type': 'Organization', name: 'Cloud Eight Technologies' },
 	...(sameAs.length && { sameAs }),
@@ -36,6 +40,8 @@ const personSchema = {
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
@@ -44,7 +50,13 @@ const personSchema = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
-		<meta name="twitter:card" content="summary" />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={`${profile.name}, ${profile.tagline}`} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={ogImage} />
+		{xHandle && <meta name="twitter:creator" content={xHandle} />}
 
 		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 

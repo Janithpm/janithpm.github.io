@@ -2,17 +2,26 @@
 interface Props {
 	id: string;
 	title: string;
+	/** Optional number of items, shown beside the heading as "(06)". */
+	count?: number;
 }
 
-const { id, title } = Astro.props;
+const { id, title, count } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-heading`} class="border-t border-zinc-200 py-16 dark:border-zinc-800">
+<section id={id} aria-labelledby={`${id}-heading`} class="pt-16 sm:pt-20">
 	<h2
 		id={`${id}-heading`}
-		class="mb-10 text-sm font-bold tracking-wider text-teal-700 uppercase dark:text-teal-400"
+		class="mb-10 flex items-start gap-1.5 text-4xl leading-none font-bold tracking-tighter text-zinc-900 sm:text-5xl dark:text-zinc-50"
 	>
 		{title}
+		{
+			count !== undefined && (
+				<sup class="mt-1 font-mono text-sm font-normal tracking-normal text-teal-700 dark:text-teal-400">
+					({String(count).padStart(2, '0')})
+				</sup>
+			)
+		}
 	</h2>
 	<slot />
 </section>
